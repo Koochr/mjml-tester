@@ -1,0 +1,24 @@
+{
+  "name": "mjml-tester",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "Koochr",
+  "dependencies": {
+    "liquid": "^4.0.1",
+    "mjml": "^4.6.3",
+    "nodemailer": "^6.4.10"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "lint": "eslint --ext .js --fix src/ "
+  },
+  "devDependencies": {
+    "eslint": "^7.3.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-recommended": "^4.1.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5"
+  }
+}

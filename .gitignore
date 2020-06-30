@@ -1,0 +1,5 @@
+.idea
+out/*.html
+templates/*.mjml
+data/*.json
+node_modules
