@@ -17,18 +17,25 @@ const main = async () => {
 			pass: testAccount.pass
 		}
 	})
+
 	const templates = await promises.readdir(join(__dirname, "../templates"))
+
 	for (const template of templates) {
-		if (!/\.mjml$/.test(template)) continue
+		if (!(/\.mjml$/.test(template) || /\.html$/.test(template))) continue
 
 		const json = await promises.readFile(
 			join(__dirname, "../data", `${template.slice(0, -5)}.json`)
 		)
 		const options = JSON.parse(json)
-
 		const file = await promises.readFile(join(__dirname, "../templates", template))
-		const mjmlTemplate = await liquidEngine.parseAndRender(String(file), options)
-		const html = mjml(mjmlTemplate).html
+		let html
+
+		if (/\.mjml$/.test(template)) {
+			const mjmlTemplate = await liquidEngine.parseAndRender(String(file), options)
+			html = mjml(mjmlTemplate).html
+		} else {
+			html = await liquidEngine.parseAndRender(String(file), options)
+		}
 
 		await promises.writeFile(join(__dirname, "../out", `${template.slice(0, -5)}.html`), html)
 
