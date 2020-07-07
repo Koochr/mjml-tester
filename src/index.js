@@ -37,7 +37,7 @@ const main = async () => {
 			html = await liquidEngine.parseAndRender(String(file), options)
 		}
 
-		await promises.writeFile(join(__dirname, "../out", `${template.slice(0, -5)}.html`), html)
+		await promises.writeFile(join(__dirname, "../out", `${template.slice(0, -5)}__out.html`), html)
 
 		const info = await transporter.sendMail({
 			// eslint-disable-next-line quotes
