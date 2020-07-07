@@ -47,7 +47,7 @@ const main = async () => {
 			html
 		})
 
-		console.log("Preview URL:", getTestMessageUrl(info))
+		console.log(`Template: ${template}, Preview URL:`, getTestMessageUrl(info))
 	}
 }
 
