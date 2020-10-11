@@ -4,3 +4,4 @@ templates/*.mjml
 templates/*.html
 data/*.json
 node_modules
+old
