@@ -18,10 +18,8 @@ const main = async () => {
 		}
 	})
 
-	const templates = await promises.readdir(join(__dirname, "../templates"))
-
-	for (const template of templates) {
-		if (!(/\.mjml$/.test(template) || /\.html$/.test(template))) continue
+	const renderTemplate = async template => {
+		if (!(/\.mjml$/.test(template) || /\.html$/.test(template))) return
 
 		const json = await promises.readFile(
 			join(__dirname, "../data", `${template.slice(0, -5)}.json`)
@@ -48,6 +46,16 @@ const main = async () => {
 		})
 
 		console.log(`Template: ${template}, Preview URL:`, getTestMessageUrl(info))
+	}
+
+	if (process.argv[2]) {
+		await renderTemplate(process.argv[2])
+	} else {
+		const templates = await promises.readdir(join(__dirname, "../templates"))
+
+		for (const template of templates) {
+			await renderTemplate(template)
+		}
 	}
 }
 
